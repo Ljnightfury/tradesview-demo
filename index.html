@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Trade Masters — Demo Trading</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div id="app">
+    <header class="topbar">
+      <div class="brand">Trade Masters — Demo Trading</div>
+      <div class="top-right">
+        <button id="fsToggle" class="btn-ghost">Open Fullscreen</button>
+      </div>
+    </header>
+
+    <main class="container">
+      <section class="left-card card">
+        <div class="panel-row">
+          <div class="muted">Demo only · No real orders</div>
+          <div class="balance">Balance (demo): <span id="balanceDisplay">₹ 100,000</span></div>
+        </div>
+
+        <div class="chart-mini card">
+          <div id="miniMeta" class="meta">Symbol: <b id="symMini">BTC/INR</b> &nbsp;&nbsp; Price: <b id="priceMini">-</b></div>
+          <canvas id="miniChart"></canvas>
+        </div>
+
+        <div class="controls card">
+          <div class="row">
+            <label>Starting Balance (₹)</label>
+            <input id="startBalance" type="number" placeholder="100000" />
+            <label>Pair</label>
+            <select id="pairSelect">
+              <option value="BTCINR">BTC/INR</option>
+              <option value="ETHINR">ETH/INR</option>
+              <option value="EURUSD">EUR/USD</option>
+              <option value="USDINR">USD/INR</option>
+            </select>
+          </div>
+
+          <div class="row">
+            <label>Qty</label>
+            <input id="qty" type="number" placeholder="1" />
+            <button id="buyBtn" class="btn-buy">BUY</button>
+            <button id="sellBtn" class="btn-sell">SELL</button>
+          </div>
+
+          <div class="row small">
+            <label>Candle Speed</label>
+            <div id="speedBtns" class="speed-group">
+              <button class="speed active" data-ms="1000">1s</button>
+              <button class="speed" data-ms="3000">3s</button>
+              <button class="speed" data-ms="5000">5s</button>
+              <button class="speed" data-ms="60000">1m</button>
+            </div>
+            <button id="resetBtn" class="btn-ghost">Reset Demo</button>
+          </div>
+        </div>
+
+        <div class="positions history card">
+          <h3>Open Positions</h3>
+          <div id="positionsWrap"><div class="muted">No open positions</div></div>
+          <h3>Trade History</h3>
+          <div id="historyWrap"><div class="muted">No history</div></div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Fullscreen overlay -->
+    <div id="fsOverlay" class="fullscreen">
+      <div class="fs-top">
+        <div class="fs-left">
+          <div id="fsSpeedBtns" class="speed-group">
+            <button class="speed active" data-ms="1000">1s</button>
+            <button class="speed" data-ms="3000">3s</button>
+            <button class="speed" data-ms="5000">5s</button>
+            <button class="speed" data-ms="60000">1m</button>
+          </div>
+        </div>
+        <div class="fs-controls">
+          <span class="white">Pair: <b id="fsSym">BTC/INR</b></span>
+          <span class="white">Price: <b id="fsPrice">-</b></span>
+          <button id="closeFs" class="btn-ghost">Back</button>
+        </div>
+      </div>
+
+      <div class="fs-body">
+        <div class="fs-chart card">
+          <canvas id="bigChart"></canvas>
+        </div>
+
+        <aside class="fs-side card">
+          <div class="stat white">Demo Balance: <b id="fsBalance">₹ 100000</b></div>
+          <div class="stat white">Position: <b id="fsPosition">None</b></div>
+          <div style="margin-top:12px">
+            <input id="fsQty" type="number" placeholder="Qty" />
+            <button id="fsBuy" class="btn-buy">BUY</button>
+            <button id="fsSell" class="btn-sell">SELL</button>
+            <button id="closeTrade" class="btn-ghost" style="margin-left:6px">Close Pos</button>
+          </div>
+
+          <h4 style="margin-top:14px">Open Positions</h4>
+          <div id="fsPositions"></div>
+          <h4 style="margin-top:10px">History</h4>
+          <div id="fsHistory"></div>
+        </aside>
+      </div>
+    </div>
+
+    <footer class="footer muted">© Trade Masters — Demo (for educational purposes)</footer>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
